@@ -6,22 +6,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts 'Cadastrando moedas...'
+spinner = TTY::Spinner.new("[:spinner] Cadastrando moedas...")
+spinner.auto_spin
 
-Coin.create!(
-  description: 'Bitcoin',
-  acronym: 'BTC',
-  url_image: 'https://e7.pngegg.com/pngimages/567/101/png-clipart-bitcoin-bitcoin.png'
-)
-Coin.create!(
-  description: 'Dash',
-  acronym: 'DASH',
-  url_image: 'https://w7.pngwing.com/pngs/853/418/png-transparent-logo-dash-cryptocurrency-ethereum-steemit-ripple-coin-blue-text-trademark.png'
-)
-Coin.create!(
-  description: 'Ethereum',
-  acronym: 'ETH',
-  url_image: 'https://img2.gratispng.com/20180516/vgq/kisspng-ethereum-cryptocurrency-blockchain-logo-eos-io-crypto-5afc9ab9e70b61.4199610615265041219464.jpg'
-)
+coins = [
+  { description: 'Bitcoin',
+    acronym: 'BTC',
+    url_image: 'https://e7.pngegg.com/pngimages/567/101/png-clipart-bitcoin-bitcoin.png'
+  },
 
-puts 'Moedas cadastradas com sucesso!'
+  { description: 'Dash',
+    acronym: 'DASH',
+    url_image: 'https://w7.pngwing.com/pngs/853/418/png-transparent-logo-dash-cryptocurrency-ethereum-steemit-ripple-coin-blue-text-trademark.png'
+  },
+
+  { description: 'Ethereum',
+   acronym: 'ETH',
+   url_image: 'https://img2.gratispng.com/20180516/vgq/kisspng-ethereum-cryptocurrency-blockchain-logo-eos-io-crypto-5afc9ab9e70b61.4199610615265041219464.jpg' 
+  }
+]
+
+coins.each { |coin| Coin.find_or_create_by!(coin) }
+spinner.success('(Concluído)')
