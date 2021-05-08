@@ -7,6 +7,20 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import 'bootstrap'
+import 'jquery_ujs'
+
+import $ from 'jquery/dist/jquery';
+global.$ = $;
+
+import notify from 'notify-js-legacy';
+global.notify = notify
+
+import bootstrap from 'bootstrap/dist/js/bootstrap';
+global.bootstrap = bootstrap
+
+import popper from 'popper.js/dist/popper'
+global.popper = popper
 
 Rails.start()
 Turbolinks.start()
